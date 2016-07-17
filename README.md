@@ -34,10 +34,12 @@ The **Misclassification** costs were also calculated for each of the different m
 ##Clustering.py
 In this project I was able to implement, observe and compare different un-supervised machine learning algorithms like **Basic Sequential Clustering(BSAC)**, multiple variants of **Hierarchical clustering** and also **DBSCAN**.
 Random data points were generated to implement the basic clustering algorithm with a fixed **theta(threshold)** value. The order of the data points was later flipped to observe the dependency on the ordering of the points. **Adjusted RAND index** metric was calculated to find the difference between the two clusterings and for the data used, a significant value of 14% was identified.
+
 For the same data **Hierarchical clustering** was performed using both **single-link** and **complete-link** distance measures and both the **dendrograms** was printed and analysed.
 In each of the clustering the **Sum of Squared Error(SSE)** was calculated and the cluster with the highest **Sum of Squared Error(SSE)** was identified.
 **Cophenetic Correlation(a measure to determine how a dendrogram preserves pair wise distances between unmodelled data points) value was computed for both the clusterings. From the values obtained it was observed that the **complete-link** method provided more correlated results for the data used
 Also to perform cluster validation both **proximity** and **incidence** matrices were created for both the distance measures and **correlation coefficients** were computed. Again it was observed that the **complete-link** scenario had a higher correlation coefficient value(0.741).
+
 Finally a set of 1-D points were used to implement **DBSCAN** algorithm with multiple **epsilon** and **MinPoints** parameter values.
 The labels assigned to the points were printed and analysed and it was observed that as the **epsilon** value increases more and more points are labelled as **core** instead of being **border** points. Also the **adjusted RAND index** value showed that both the clustering were very different(RAND index = 0.087) even though the difference in the **epsilon** value is ver low.
 These results showed that the **DBSCAN** algorithm is mostly **resistant** to noise but is highly dependent on the **epsilon** value selected.
