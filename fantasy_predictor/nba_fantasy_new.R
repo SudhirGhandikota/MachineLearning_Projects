@@ -218,5 +218,28 @@ pred_RSquared
 pred_RSquared2 <- SSReg/SSTotal
 pred_RSquared2
 
-#outlier analysis
+cooks_distance = cooks.distance(model20)
+cooks_distance
 
+#outliers <- outlierTest(model20)
+#str(outliers)
+#outliers
+
+plot(cooks_distance, pch="*", cex=2, main="Influential Obs by Cooks distance") 
+abline(h = 5*mean(cooks_distance, na.rm=T), col="red")  # add cutoff line
+text(x=1:length(cooks_distance)+1, y=cooks_distance, labels=ifelse(cooks_distance>4*mean(cooks_distance, na.rm=T),names(cooks_distance),""), col="red")
+
+
+
+#removing outliers
+new_data <- data[-c(379,10726,13731,10344,6691,6391,17484,1964,13153,829,7579,9665,7571),]
+dim(new_data)
+model21 <- lm(DK.Pts ~ PosPF+PosPG+PosSG+Type+MP+X2P+X3P+FT+TRB+STL+BLK+TOV+PF+DK.Sal+dd+td, data=new_data)
+summary(model21)
+vif(model21)
+anova(model21)[["Residuals","Sum Sq"]]
+plot(model21, which=1)
+plot(model21, which=2)
+plot(model21, which=6)
+sigma(model21)
+#no changes in model. Infact model became worse
